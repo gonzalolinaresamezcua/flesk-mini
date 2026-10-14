@@ -1,0 +1,26 @@
+/* Flesk: tema menta claro para Adminer */
+:root { --fk-mint: #1f7f6d; --fk-mint-d: #0f3d35; --fk-mint-l: #e6f6f0; --fk-bg: #f5fbf9; --fk-line: #d4ece4; }
+html, body { background: var(--fk-bg); color: var(--fk-mint-d); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+a, a:visited { color: var(--fk-mint); }
+a:hover { color: var(--fk-mint-d); }
+h1 { background: var(--fk-mint-d); color: #fff; border-bottom: 0; }
+h1 a, h1 a:visited, #h1 { color: #fff !important; font-weight: 700; text-decoration: none; }
+h2 { background: var(--fk-mint-l); color: var(--fk-mint-d); border-bottom: 1px solid var(--fk-line); }
+h3 { color: var(--fk-mint-d); }
+#menu { background: #fff; border-right: 1px solid var(--fk-line); }
+#menu p, #tables { border-color: var(--fk-line); }
+#menu a.active, #tables a.active { background: var(--fk-mint-l); font-weight: 600; }
+#breadcrumb { background: var(--fk-mint); }
+#breadcrumb, #breadcrumb a { color: #fff !important; }
+table { border-color: var(--fk-line); background: #fff; }
+th, td { border-color: var(--fk-line); }
+thead th, thead td { background: var(--fk-mint-l); }
+tbody tr:hover td, tbody tr:hover th { background: #f0faf6; }
+input, select, textarea { border: 1px solid #b9ddd1; border-radius: 6px; padding: 3px 6px; background: #fff; color: var(--fk-mint-d); }
+input:focus, select:focus, textarea:focus { outline: 2px solid rgba(31,127,109,.35); border-color: var(--fk-mint); }
+input[type=submit], input[type=button], button { background: var(--fk-mint); color: #fff; border: 0; border-radius: 999px; padding: 4px 14px; cursor: pointer; }
+input[type=submit]:hover, button:hover { background: var(--fk-mint-d); }
+.error { background: #fdecea; color: #8a1c14; border: 1px solid #f5c2bd; border-radius: 8px; }
+.message { background: #e6f6f0; color: var(--fk-mint-d); border: 1px solid var(--fk-line); border-radius: 8px; }
+code.jush, pre { background: #f3faf7; border-radius: 6px; }
+.logout input[type=submit] { background: #fff; color: var(--fk-mint-d); border: 1px solid var(--fk-line); }
