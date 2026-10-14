@@ -1,0 +1,190 @@
+#!/usr/bin/env bash
+# Flesk dispatcher — único punto de entrada (sudoers whitelist)
+set -euo pipefail
+
+FRESK_ROOT="${FRESK_ROOT:-/opt/flesk}"
+# shellcheck disable=SC1091
+source "$FRESK_ROOT/lib/common.sh"
+# shellcheck disable=SC1091
+source "$FRESK_ROOT/lib/rollback.sh"
+# shellcheck disable=SC1091
+source "$FRESK_ROOT/lib/limits.sh"
+
+usage() {
+  cat <<'USAGE'
+Flesk Mini — edición de prueba gratuita de Flesk (https://serverflesk.es)
+Límites: 1 dominio · 1 correo · 1 SSL · 1 base de datos · 1 usuario SFTP/FTP
+
+Uso: flesk <comando> [args]
+
+Comandos:
+  status                         Estado de servicios e instalación
+  domain add|del|list|render|isolate ...
+  mail add|passwd|del|list|setup|certs|vacation ...
+  alias add|del ... | forward add|del ...   (redirecciones del buzón)
+  dns set|del|init|list ...
+  ssl obtain|issue|renew|status
+  db add|del|list|passwd|dump|login|logout|appinfo ...
+  sftp add|del|list|passwd ...
+  files fixperms|backup|empty <dominio> <ruta>
+  panel ssl <dominio>|--self-signed
+  dkim ensure|show|del <dominio> | dkim sync
+  webmail vhost|remove <dominio>
+
+¿Necesitas más? En https://serverflesk.es :
+  · Flesk gratuito: hasta 3 dominios, licencia anual gratis tras registrarte (https://serverflesk.es/descargar)
+  · Flesk de pago: todo incluido, dominios ilimitados e inteligencia artificial operativa
+USAGE
+}
+
+resolve_script() {
+  local group="$1"
+  local sub="${2:-}"
+  case "$group" in
+    status) echo "$FRESK_ROOT/scripts/status.sh"; return 0 ;;
+    domain)
+      case "$sub" in
+        add)  echo "$FRESK_ROOT/scripts/domain-add.sh" ;;
+        del|remove|rm)  echo "$FRESK_ROOT/scripts/domain-del.sh" ;;
+        list|ls) echo "$FRESK_ROOT/scripts/domain-list.sh" ;;
+        render) echo "$FRESK_ROOT/scripts/vhost-render.sh" ;;
+        isolate) echo "$FRESK_ROOT/scripts/domain-isolate.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    mail)
+      case "$sub" in
+        add)    echo "$FRESK_ROOT/scripts/mail-add.sh" ;;
+        passwd) echo "$FRESK_ROOT/scripts/mail-passwd.sh" ;;
+        del|remove|rm) echo "$FRESK_ROOT/scripts/mail-del.sh" ;;
+        list|ls) echo "$FRESK_ROOT/scripts/mail-list.sh" ;;
+        setup) echo "$FRESK_ROOT/scripts/mail-stack-setup.sh" ;;
+        certs) echo "$FRESK_ROOT/scripts/mail-certs.sh" ;;
+        vacation) echo "$FRESK_ROOT/scripts/mail-vacation.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    alias)
+      case "$sub" in
+        add) echo "$FRESK_ROOT/scripts/alias-add.sh" ;;
+        del|remove|rm) echo "$FRESK_ROOT/scripts/alias-del.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    forward)
+      case "$sub" in
+        add) echo "$FRESK_ROOT/scripts/forward-add.sh" ;;
+        del|remove|rm) echo "$FRESK_ROOT/scripts/forward-del.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    dns)
+      case "$sub" in
+        set) echo "$FRESK_ROOT/scripts/dns-set.sh" ;;
+        del|remove|rm) echo "$FRESK_ROOT/scripts/dns-del.sh" ;;
+        init) echo "$FRESK_ROOT/scripts/dns-init.sh" ;;
+        list|ls) echo "$FRESK_ROOT/scripts/dns-list.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    ssl)
+      case "$sub" in
+        obtain|issue) echo "$FRESK_ROOT/scripts/ssl-obtain.sh" ;;
+        renew|renew-all) echo "$FRESK_ROOT/scripts/ssl-renew.sh" ;;
+        status) echo "$FRESK_ROOT/scripts/ssl-status.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    db)
+      case "$sub" in
+        add|create) echo "$FRESK_ROOT/scripts/db-create.sh" ;;
+        del|drop|remove|rm) echo "$FRESK_ROOT/scripts/db-drop.sh" ;;
+        list|ls) echo "$FRESK_ROOT/scripts/db-list.sh" ;;
+        passwd) echo "$FRESK_ROOT/scripts/db-passwd.sh" ;;
+        dump) echo "$FRESK_ROOT/scripts/db-dump.sh" ;;
+        login) echo "$FRESK_ROOT/scripts/db-login.sh" ;;
+        logout) echo "$FRESK_ROOT/scripts/db-logout.sh" ;;
+        appinfo) echo "$FRESK_ROOT/scripts/db-appinfo.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    files)
+      case "$sub" in
+        fixperms) echo "$FRESK_ROOT/scripts/files-fixperms.sh" ;;
+        backup|empty) echo "$FRESK_ROOT/scripts/files-bulk.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    panel)
+      case "$sub" in
+        ssl) echo "$FRESK_ROOT/scripts/panel-ssl.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    dkim)
+      case "$sub" in
+        ensure|show|del|remove|rm|sync) echo "$FRESK_ROOT/scripts/dkim.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    webmail)
+      case "$sub" in
+        vhost|add|update|remove|del|rm) echo "$FRESK_ROOT/scripts/webmail-vhost.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    sftp)
+      case "$sub" in
+        add) echo "$FRESK_ROOT/scripts/sftp-add.sh" ;;
+        del|remove|rm) echo "$FRESK_ROOT/scripts/sftp-del.sh" ;;
+        list|ls) echo "$FRESK_ROOT/scripts/sftp-list.sh" ;;
+        passwd) echo "$FRESK_ROOT/scripts/sftp-passwd.sh" ;;
+        *) return 2 ;;
+      esac
+      ;;
+    *) return 2 ;;
+  esac
+}
+
+main() {
+  if [[ $# -lt 1 ]]; then usage; exit 2; fi
+  local group="$1"
+
+  case "$group" in
+    -h|--help|help) usage; exit 0 ;;
+    status)
+      local script
+      script="$(resolve_script status)" || die 2 "Comando inválido"
+      if [[ ! -f "$script" ]]; then
+        die 3 "Flesk no está instalado o falta scripts/status.sh. Ejecuta: sudo ./install.sh"
+      fi
+      shift
+      exec bash "$script" "$@"
+      ;;
+    domain|mail|alias|forward|dns|ssl|db|sftp|files|panel|dkim|webmail)
+      if [[ $# -lt 2 ]]; then
+        die 2 "Falta subcomando para '$group'. Prueba: flesk --help"
+      fi
+      local sub="$2"
+      local script
+      if ! script="$(resolve_script "$group" "$sub")"; then
+        die 2 "Subcomando inválido: $group $sub"
+      fi
+      if [[ ! -f "$script" ]]; then
+        die 3 "Aún no implementado: $group $sub (fase pendiente). Script: $script"
+      fi
+      # dkim y webmail reciben la acción como primer argumento
+      if [[ "$group" == "dkim" || "$group" == "webmail" || ( "$group" == "files" && "$sub" != "fixperms" ) ]]; then shift 1; else shift 2; fi
+      exec bash "$script" "$@"
+      ;;
+    settings|stats|backup|app|git|job|pkg|exec|ai)
+      echo "Flesk Mini no incluye '$group'. Disponible en Flesk gratuito (3 dominios, registro) o de pago (ilimitado + IA): ${FLESK_MINI_URL} | Not included in Flesk Mini." >&2
+      exit 7
+      ;;
+    *)
+      die 2 "Comando desconocido: $group. Prueba: flesk --help"
+      ;;
+  esac
+}
+
+main "$@"
