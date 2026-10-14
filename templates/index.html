@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLESK · Sitio creado con Flesk</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root{
+    --m1:#5fc4ad; --m2:#8fdcc8; --m3:#bff0e2; --m4:#e6fbf5; --deep:#1f7f6d; --ink:#0f3d35;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(120deg,#6fcab4 0%,#a6e5d4 38%,#dcf8ef 62%,#f4fffb 78%,#b7ecdd 100%);
+    background-size:220% 220%;
+    animation:bgShift 18s ease-in-out infinite alternate;
+    display:flex;align-items:center;justify-content:center;
+    height:100vh;height:100dvh;width:100vw;
+  }
+  @keyframes bgShift{0%{background-position:0% 40%}100%{background-position:100% 60%}}
+
+  /* Capa de polígonos */
+  .poly{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .poly polygon{mix-blend-mode:soft-light;transform-box:fill-box;transform-origin:center}
+  .p1{animation:drift1 16s ease-in-out infinite alternate}
+  .p2{animation:drift2 20s ease-in-out infinite alternate}
+  .p3{animation:drift3 24s ease-in-out infinite alternate}
+  .p4{animation:pulse 9s ease-in-out infinite}
+  @keyframes drift1{from{transform:translate(0,0)}to{transform:translate(4%,-3%)}}
+  @keyframes drift2{from{transform:translate(0,0)}to{transform:translate(-5%,4%)}}
+  @keyframes drift3{from{transform:translate(0,0) rotate(0)}to{transform:translate(3%,5%) rotate(4deg)}}
+  @keyframes pulse{0%,100%{opacity:.25}50%{opacity:.6}}
+
+  /* Destello de luz */
+  .glow{position:fixed;width:70vmax;height:70vmax;border-radius:50%;z-index:1;pointer-events:none;
+    background:radial-gradient(circle,rgba(255,255,255,.85) 0%,rgba(255,255,255,.35) 30%,rgba(255,255,255,0) 65%);
+    top:-20vmax;right:-15vmax;animation:glowMove 14s ease-in-out infinite alternate;filter:blur(8px)}
+  @keyframes glowMove{from{transform:translate(0,0)}to{transform:translate(-25vw,30vh)}}
+
+  /* Barrido diagonal */
+  .sweep{position:fixed;inset:-50%;z-index:1;pointer-events:none;
+    background:linear-gradient(115deg,transparent 45%,rgba(255,255,255,.35) 50%,transparent 55%);
+    animation:sweep 7s linear infinite}
+  @keyframes sweep{from{transform:translateX(-40%)}to{transform:translateX(40%)}}
+
+  main{position:relative;z-index:2;text-align:center;padding:2rem;max-width:1100px;width:100%}
+
+  .logo{display:flex;align-items:center;justify-content:center;gap:clamp(.8rem,2.5vw,2rem);
+    opacity:0;animation:rise 1.2s cubic-bezier(.2,.8,.2,1) .2s forwards}
+  .logo svg{width:clamp(80px,13vw,170px);height:auto;filter:drop-shadow(0 12px 24px rgba(15,61,53,.25));
+    animation:float 5s ease-in-out 1.4s infinite}
+  .cube-top{animation:cubeGlow 3.5s ease-in-out infinite}
+  .word{font-size:clamp(4.5rem,17vw,13rem);font-weight:900;letter-spacing:.06em;line-height:.9;
+    filter:drop-shadow(0 8px 18px rgba(15,61,53,.22))}
+  .word span{display:inline-block;opacity:0;transform:translateY(40px) scale(.8);
+    background:linear-gradient(90deg,#0f3d35 0%,#1f7f6d 30%,#46c7a8 46%,#ffffff 50%,#46c7a8 54%,#1f7f6d 70%,#0f3d35 100%);
+    background-size:600% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+    animation:letter .8s cubic-bezier(.2,.8,.2,1) forwards, shine 5s linear infinite}
+  .word span:nth-child(1){animation-delay:.35s,0s;background-position-x:0%}
+  .word span:nth-child(2){animation-delay:.47s,-.25s}
+  .word span:nth-child(3){animation-delay:.59s,-.5s}
+  .word span:nth-child(4){animation-delay:.71s,-.75s}
+  .word span:nth-child(5){animation-delay:.83s,-1s}
+  @keyframes letter{to{opacity:1;transform:none}}
+  @keyframes shine{from{background-position:100% 0}to{background-position:0% 0}}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(-3deg)}}
+  @keyframes cubeGlow{0%,100%{opacity:1}50%{opacity:.7}}
+  @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+  .msg{margin:clamp(1.2rem,4vh,2.6rem) auto 0;max-width:880px;
+    font-size:clamp(1.05rem,2.1vw,1.55rem);line-height:1.55;font-weight:500;color:#12483f;
+    background:rgba(255,255,255,.42);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.7);border-radius:22px;padding:clamp(1rem,2.6vh,1.7rem) clamp(1.2rem,3vw,2.4rem);
+    box-shadow:0 20px 50px rgba(15,61,53,.12);opacity:0;animation:rise 1s ease 1.2s forwards}
+  .msg strong{color:#0f3d35}
+  .tag{margin-top:clamp(1rem,3vh,2rem);display:inline-flex;align-items:center;gap:.55rem;
+    font-size:clamp(.95rem,1.6vw,1.15rem);font-weight:700;letter-spacing:.04em;opacity:0;animation:rise 1s ease 1.7s forwards}
+  .tag a{color:#fff;text-decoration:none;background:linear-gradient(135deg,#1f7f6d,#3fb89c);
+    padding:.6rem 1.3rem;border-radius:999px;box-shadow:0 10px 26px rgba(31,127,109,.35);transition:transform .2s,box-shadow .2s}
+  .tag a:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(31,127,109,.45)}
+  .tag{flex-wrap:wrap;justify-content:center}
+  .dot{width:10px;height:10px;border-radius:50%;background:#2fbf8f;box-shadow:0 0 0 0 rgba(47,191,143,.6);animation:ping 2s infinite}
+  @keyframes ping{0%{box-shadow:0 0 0 0 rgba(47,191,143,.6)}70%{box-shadow:0 0 0 12px rgba(47,191,143,0)}100%{box-shadow:0 0 0 0 rgba(47,191,143,0)}}
+
+  @media (max-width:640px){.logo{flex-direction:column;gap:.4rem}.word{font-size:clamp(4rem,22vw,6.5rem)}}
+  @media (max-height:560px){.msg{font-size:1rem;padding:.8rem 1.2rem}.word{font-size:clamp(3.5rem,12vw,7rem)}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+  <svg class="poly" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="p1">
+      <polygon points="0,0 380,0 0,420" fill="#2f9f88" opacity=".35"/>
+      <polygon points="380,0 820,0 600,300" fill="#ffffff" opacity=".35"/>
+      <polygon points="0,420 300,260 420,620" fill="#3aa892" opacity=".3"/>
+    </g>
+    <g class="p2">
+      <polygon points="820,0 1250,0 1000,420" fill="#ffffff" opacity=".45"/>
+      <polygon points="600,300 1000,420 700,650" fill="#6fd1ba" opacity=".35"/>
+      <polygon points="1250,0 1600,0 1600,380" fill="#e9fff8" opacity=".5"/>
+      <polygon points="300,600 700,650 450,900" fill="#2c9a84" opacity=".28"/>
+    </g>
+    <g class="p3">
+      <polygon points="1000,420 1600,380 1300,780" fill="#ffffff" opacity=".35"/>
+      <polygon points="700,650 1300,780 900,900" fill="#56c1a9" opacity=".3"/>
+      <polygon points="0,700 300,600 0,900" fill="#1f8a74" opacity=".35"/>
+      <polygon points="1300,780 1600,650 1600,900" fill="#7fd9c4" opacity=".35"/>
+    </g>
+    <g class="p4">
+      <polygon points="420,620 600,300 700,650" fill="#ffffff"/>
+      <polygon points="1000,420 1250,0 1600,380" fill="#ffffff"/>
+    </g>
+  </svg>
+  <div class="glow"></div>
+  <div class="sweep"></div>
+
+  <main>
+    <div class="logo" aria-label="FLESK">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <defs>
+          <linearGradient id="gt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9fff8"/><stop offset="1" stop-color="#8fdcc8"/></linearGradient>
+          <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fb89c"/><stop offset="1" stop-color="#1f7f6d"/></linearGradient>
+          <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f7f6d"/><stop offset="1" stop-color="#0f3d35"/></linearGradient>
+        </defs>
+        <!-- cubo superior -->
+        <polygon class="cube-top" points="60,8 88,24 60,40 32,24" fill="url(#gt)"/>
+        <polygon points="32,24 60,40 60,70 32,54" fill="url(#gl)"/>
+        <polygon points="88,24 60,40 60,70 88,54" fill="url(#gr)"/>
+        <!-- cubo izquierdo -->
+        <polygon points="32,58 58,73 32,88 6,73" fill="url(#gt)" opacity=".95"/>
+        <polygon points="6,73 32,88 32,114 6,99" fill="url(#gl)"/>
+        <polygon points="58,73 32,88 32,114 58,99" fill="url(#gr)"/>
+        <!-- cubo derecho -->
+        <polygon points="88,58 114,73 88,88 62,73" fill="url(#gt)" opacity=".95"/>
+        <polygon points="62,73 88,88 88,114 62,99" fill="url(#gl)"/>
+        <polygon points="114,73 88,88 88,114 114,99" fill="url(#gr)"/>
+      </svg>
+      <div class="word"><span>F</span><span>L</span><span>E</span><span>S</span><span>K</span></div>
+    </div>
+
+    <p class="msg">
+      Bienvenido al nuevo <strong>sistema para control de dominios y servidores</strong>
+      hecho con inteligencia artificial, para no tener que pagar nunca más por un software sencillo.
+      <strong>El poder será distribuido.</strong>
+    </p>
+
+    <div class="tag"><span class="dot"></span>
+      <a href="https://digitacode.es" target="_blank" rel="noopener">digitacode.es</a>
+      <a href="https://serverflesk.es" target="_blank" rel="noopener">serverflesk.es</a>
+    </div>
+  </main>
+</body>
+</html>

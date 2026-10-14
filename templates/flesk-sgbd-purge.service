@@ -1,0 +1,7 @@
+[Unit]
+Description=Flesk: borra las credenciales efímeras de Adminer (fks_*) caducadas
+After=mariadb.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/flesk/bin/flesk db logout --expired

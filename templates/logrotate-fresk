@@ -1,0 +1,21 @@
+/opt/flesk/var/log/fresk.log {
+    weekly
+    rotate 12
+    compress
+    missingok
+    notifempty
+    create 640 root fresk
+}
+
+/var/www/vhosts/*/logs/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    sharedscripts
+    postrotate
+        invoke-rc.d nginx rotate >/dev/null 2>&1 || true
+    endscript
+}
