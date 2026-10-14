@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 const FLESK_MINI_MAX = 1;
 const FLESK_MINI_SITE = 'https://serverflesk.es';
-const FLESK_MINI_REGISTER = 'https://serverflesk.es/descargar';
+const FLESK_MINI_REGISTER = 'https://serverflesk.es/#ediciones';
 
 /** Recurso => tabla del panel. */
 function fresk_mini_tables(): array {

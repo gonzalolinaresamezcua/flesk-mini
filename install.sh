@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Flesk Mini install.sh — edición de prueba (1 dominio). Idempotente. Ubuntu 24.04 LTS.
-# Más dominios: Flesk gratuito (3 dominios, registro) o de pago (ilimitado + IA) en https://serverflesk.es
+# Más dominios: Flesk Básico (3 dominios, 5 €/año) o Flesk IA (ilimitado + IA, 12 €/año) en https://serverflesk.es
 set -euo pipefail
 
 FRESK_ROOT="${FRESK_ROOT:-/opt/flesk}"
