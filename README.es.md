@@ -10,8 +10,8 @@ Flesk Mini es un panel de hosting ligero y autoalojado para **un servidor Ubuntu
 Te permite probar Flesk de verdad: web, archivos, DNS, correo, SSL, base de datos y SFTP/FTP, desde un panel web bilingüe (ES/EN).
 
 > **¿Necesitas más de un dominio?** En [serverflesk.es](https://serverflesk.es):
-> - **Flesk gratuito** — hasta **3 dominios** con **licencia anual gratis** tras registrarte en [serverflesk.es/descargar](https://serverflesk.es/descargar).
-> - **Flesk de pago** — todo incluido, **dominios ilimitados** e **inteligencia artificial operativa** que gestiona el servidor por ti.
+> - **Flesk Básico 1.0** — hasta **3 dominios**, licencia anual de **5 €/año** (IVA incl.) — [comprar](https://serverflesk.es/comprar?plan=basico).
+> - **Flesk IA 2.0** — **dominios ilimitados** con **inteligencia artificial operativa** que gestiona el servidor por ti, licencia anual de **12 €/año** (IVA incl.) — [comprar](https://serverflesk.es/comprar?plan=ia).
 
 ## Funciones
 
@@ -30,7 +30,7 @@ Además: interfaz en español/inglés con selector de idioma (español por defec
 
 ## Límites de la prueba
 
-| Recurso | Flesk Mini | Flesk gratuito | Flesk de pago |
+| Recurso | Flesk Mini (gratis) | Flesk Básico (5 €/año) | Flesk IA (12 €/año) |
 |---------|-----------:|---------------:|--------------:|
 | Dominios | 1 | 3 | Ilimitados |
 | Buzones de correo | 1 | ✔ | ✔ |
@@ -87,8 +87,8 @@ Capturas del panel Flesk (de serverflesk.es; la edición completa tiene más opc
 ## Enlaces
 
 - Web: <https://serverflesk.es>
-- Registro y descarga de Flesk gratuito (3 dominios): <https://serverflesk.es/descargar>
-- Flesk de pago con IA: <https://serverflesk.es>
+- Flesk Básico 1.0 (3 dominios, 5 €/año): <https://serverflesk.es/comprar?plan=basico>
+- Flesk IA 2.0 (dominios ilimitados + IA, 12 €/año): <https://serverflesk.es/comprar?plan=ia>
 - Autor: [digitacode.es](https://digitacode.es)
 
 ## Licencia

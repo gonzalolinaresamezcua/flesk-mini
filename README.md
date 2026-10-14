@@ -10,8 +10,8 @@ Flesk Mini is a lightweight, self-hosted hosting panel for **one Ubuntu 24.04 se
 It lets you try Flesk for real: website, files, DNS, mail, SSL, database and SFTP/FTP, all from a clean bilingual (ES/EN) web panel.
 
 > **Need more than one domain?** At [serverflesk.es](https://serverflesk.es):
-> - **Free Flesk** — up to **3 domains** with a **free yearly licence** after registering at [serverflesk.es/descargar](https://serverflesk.es/descargar).
-> - **Paid Flesk** — everything included, **unlimited domains** and **working artificial intelligence** that manages the server for you.
+> - **Flesk Basic 1.0** — up to **3 domains**, annual licence **€5/year** (VAT incl.) — [buy](https://serverflesk.es/comprar?plan=basico).
+> - **Flesk AI 2.0** — **unlimited domains** with **working artificial intelligence** that manages the server for you, annual licence **€12/year** (VAT incl.) — [buy](https://serverflesk.es/comprar?plan=ia).
 
 ## Features
 
@@ -30,7 +30,7 @@ Also: Spanish/English UI with language switcher (Spanish by default), CSRF prote
 
 ## Trial limits
 
-| Resource | Flesk Mini | Free Flesk | Paid Flesk |
+| Resource | Flesk Mini (free) | Flesk Basic (€5/year) | Flesk AI (€12/year) |
 |----------|-----------:|-----------:|-----------:|
 | Domains | 1 | 3 | Unlimited |
 | Mailboxes | 1 | ✔ | ✔ |
@@ -87,8 +87,8 @@ Screenshots of the Flesk panel (from serverflesk.es; the full edition has more m
 ## Links
 
 - Website: <https://serverflesk.es>
-- Register / download free Flesk (3 domains): <https://serverflesk.es/descargar>
-- Paid Flesk with AI: <https://serverflesk.es>
+- Flesk Basic 1.0 (3 domains, €5/year): <https://serverflesk.es/comprar?plan=basico>
+- Flesk AI 2.0 (unlimited domains + AI, €12/year): <https://serverflesk.es/comprar?plan=ia>
 - Author: [digitacode.es](https://digitacode.es)
 
 ## Licence

@@ -32,8 +32,8 @@ Comandos:
   webmail vhost|remove <dominio>
 
 ¿Necesitas más? En https://serverflesk.es :
-  · Flesk gratuito: hasta 3 dominios, licencia anual gratis tras registrarte (https://serverflesk.es/descargar)
-  · Flesk de pago: todo incluido, dominios ilimitados e inteligencia artificial operativa
+  · Flesk Básico 1.0: hasta 3 dominios, licencia anual 5 €/año (https://serverflesk.es/comprar?plan=basico)
+  · Flesk IA 2.0: dominios ilimitados e inteligencia artificial operativa, 12 €/año (https://serverflesk.es/comprar?plan=ia)
 USAGE
 }
 
@@ -178,7 +178,7 @@ main() {
       exec bash "$script" "$@"
       ;;
     settings|stats|backup|app|git|job|pkg|exec|ai)
-      echo "Flesk Mini no incluye '$group'. Disponible en Flesk gratuito (3 dominios, registro) o de pago (ilimitado + IA): ${FLESK_MINI_URL} | Not included in Flesk Mini." >&2
+      echo "Flesk Mini no incluye '$group'. Disponible en Flesk Básico (3 dominios, 5 €/año) o Flesk IA (ilimitado + IA, 12 €/año): ${FLESK_MINI_URL} | Not included in Flesk Mini." >&2
       exit 7
       ;;
     *)
