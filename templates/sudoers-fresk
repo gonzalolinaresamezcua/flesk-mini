@@ -1,0 +1,3 @@
+# Flesk — whitelist del binario dispatcher (sin comodines).
+# Solo el usuario del pool PHP-FPM del panel; nunca www-data ni los usuarios de dominio (fk_*).
+flesk ALL=(root) NOPASSWD: /opt/flesk/bin/flesk
