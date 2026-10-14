@@ -1,0 +1,3 @@
+codemirror 5.65.18 (bundle: lib + modes xml,javascript,css,htmlmixed,clike,php,markdown,sql,nginx,properties,shell,yaml + addons)
+mammoth 1.13.0
+sheetjs xlsx 0.20.3
