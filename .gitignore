@@ -1,0 +1,8 @@
+config.conf
+.env
+var/
+*.bak
+*.bak.*
+*.pem
+*.key
+dist/
