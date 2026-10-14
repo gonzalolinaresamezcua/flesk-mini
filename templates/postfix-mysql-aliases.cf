@@ -1,0 +1,5 @@
+user = {{DB_USER}}
+password = {{DB_PASSWORD}}
+hosts = 127.0.0.1
+dbname = {{DB_NAME}}
+query = SELECT destination FROM v_virtual_aliases WHERE email='%s'

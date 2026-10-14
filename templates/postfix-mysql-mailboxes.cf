@@ -1,0 +1,5 @@
+user = {{DB_USER}}
+password = {{DB_PASSWORD}}
+hosts = 127.0.0.1
+dbname = {{DB_NAME}}
+query = SELECT IF(maildir LIKE '/%%', CONCAT(TRIM(LEADING '/' FROM SUBSTRING(maildir, LENGTH('/var/vmail/')+1)), '/'), maildir) FROM v_virtual_mailboxes WHERE email='%s' AND active=1
