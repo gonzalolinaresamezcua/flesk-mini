@@ -1,0 +1,17 @@
+// Flesk — opciones BIND (fase 9). Autoridad local: recursion off.
+// listen-on se ajusta según DNS_PUBLIC (install.sh / dns_apply_listen).
+options {
+	directory "/var/cache/bind";
+
+	// fresk-listen-begin
+	listen-on port 53 { 127.0.0.1; };
+	listen-on-v6 port 53 { ::1; };
+	// fresk-listen-end
+
+	allow-query { any; };
+	allow-transfer { none; };
+	recursion no;
+	dnssec-validation auto;
+
+	auth-nxdomain no;    # conform to RFC1035
+};
