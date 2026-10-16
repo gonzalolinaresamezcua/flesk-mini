@@ -13,6 +13,18 @@ Te permite probar Flesk de verdad: web, archivos, DNS, correo, SSL, base de dato
 > - **Flesk Básico 1.0** — hasta **3 dominios**, licencia anual de **5 €/año** (IVA incl.) — [comprar](https://serverflesk.es/comprar?plan=basico).
 > - **Flesk IA 2.0** — **dominios ilimitados** con **inteligencia artificial operativa** que gestiona el servidor por ti, licencia anual de **12 €/año** (IVA incl.) — [comprar](https://serverflesk.es/comprar?plan=ia).
 
+
+## Pasar a Flesk de pago
+
+Flesk Mini es gratis para siempre con 1 dominio. Cuando necesites más:
+
+1. Elige tu licencia en <https://serverflesk.es> (compra: <https://serverflesk.es/comprar>).
+2. Tras el pago tendrás tu clave de licencia y la descarga de la edición de pago en tu cuenta de serverflesk.es.
+3. Instálala en tu servidor siguiendo las instrucciones que acompañan a la licencia; tu dominio, correo, DNS y base de datos de Flesk Mini se mantienen.
+
+**Precios:** 12 / 9 / 7 / 5 / 1 € por licencia y año (IVA incluido), según edición y volumen — detalles en [serverflesk.es](https://serverflesk.es).
+**Marca blanca** para proveedores de hosting: desde **5.000 licencias** — contacto en [serverflesk.es](https://serverflesk.es).
+
 ## Funciones
 
 | Menú | Qué hace |
