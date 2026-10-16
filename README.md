@@ -13,6 +13,17 @@ It lets you try Flesk for real: website, files, DNS, mail, SSL, database and SFT
 > - **Flesk Basic 1.0** — up to **3 domains**, annual licence **€5/year** (VAT incl.) — [buy](https://serverflesk.es/comprar?plan=basico).
 > - **Flesk AI 2.0** — **unlimited domains** with **working artificial intelligence** that manages the server for you, annual licence **€12/year** (VAT incl.) — [buy](https://serverflesk.es/comprar?plan=ia).
 
+## Upgrade to paid Flesk
+
+Flesk Mini is free forever for 1 domain. When you outgrow it, the paid editions run on the same server stack:
+
+1. Pick a licence at <https://serverflesk.es> (checkout: <https://serverflesk.es/comprar>).
+2. After payment you get your licence key and access to the paid edition download in your serverflesk.es account.
+3. Install it on your server following the instructions included with your licence; your Flesk Mini domain, mail, DNS and database stay where they are.
+
+**Pricing:** €12 / €9 / €7 / €5 / €1 per licence and year (VAT included), depending on edition and volume — details at [serverflesk.es](https://serverflesk.es).
+**White label** for hosting providers: available from **5,000 licences** — contact via [serverflesk.es](https://serverflesk.es).
+
 ## Features
 
 | Menu | What it does |
